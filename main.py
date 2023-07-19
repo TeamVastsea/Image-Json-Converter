@@ -108,7 +108,14 @@ class MainWindow(QMainWindow):
             json_data = {"grid": grid}
 
             # 将 JSON 数据转换为字符串
-            json_string = json.dumps(json_data, separators=(",", ": "), indent=None, cls=JSONEncoder)
+            json_string = json.dumps(json_data, separators=(",", ": "), indent=4, cls=JSONEncoder)
+
+            # 修改字符串格式，添加换行符和空格
+            json_string = json_string.replace("[\n    [", "[\n        [") \
+                                     .replace("],\n    [", "],\n        [").replace("    ]\n]", "        ]\n    ]") \
+                                     .replace("\n            1,", "1,").replace("\n            0,", "0,") \
+                                     .replace("\n            1", "1").replace("\n            0", "0") \
+                                     .replace("\n        ],", "],").replace("\n        ]", "]") \
 
             # 生成JSON文件名
             json_file_path = os.path.join(output_path, os.path.splitext(os.path.basename(image_path))[0] + ".json")
