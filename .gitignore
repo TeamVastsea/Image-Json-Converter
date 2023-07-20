@@ -8,3 +8,7 @@ node_modules
 .psci
 output
 .idea/vcs.xml
+.idea/misc.xml
+.idea/Image-Json-Conver.iml
+.idea/misc.xml
+*.iml
