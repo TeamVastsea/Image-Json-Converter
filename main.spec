@@ -8,7 +8,7 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[('assets/*', 'assets')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -42,19 +42,3 @@ exe = EXE(
     codesign_identity=None,
     entitlements_file=None,
 )
-
-# main.spec
-
-# ...
-
-from PyInstaller.utils.hooks import collect_data_files
-
-# Additional data files to be included in the bundle
-datas = collect_data_files("assets")
-
-# ...
-
-# Add the data files to the Analysis object
-a.datas += datas
-
-# ...

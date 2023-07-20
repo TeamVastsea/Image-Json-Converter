@@ -13,6 +13,3 @@ output
 *.iml
 /build
 /dist
-
-.idea/misc.xml
-.idea/Image-Json-Conver.iml
