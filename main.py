@@ -35,7 +35,7 @@ class MainWindow(QMainWindow):
 
         # 设置程序标题和图标
         self.setWindowTitle("Image to JSON Converter")
-        self.setWindowIcon(QIcon("assets/Icon.svg"))
+        self.setWindowIcon(QIcon(self.getPath("assets/Icon.svg")))
         self.resize(400, 380)
 
         # 添加标题
@@ -59,7 +59,6 @@ class MainWindow(QMainWindow):
         self.image_path_button = QPushButton("选择图片路径", self)
         self.image_path_label = NewQLineEdit("", self)
         self.image_path_label.setPlaceholderText("请输入图片路径或拖入图片")
-        self.image_path_button.setIcon(QIcon("assets/arrow.png"))
         self.image_path_button.clicked.connect(self.select_image_path)
         image_path_layout.addWidget(self.image_path_button)
         image_path_layout.addWidget(self.image_path_label)
@@ -70,7 +69,6 @@ class MainWindow(QMainWindow):
         self.output_path_button = QPushButton("选择输出路径", self)
         self.output_path_label = QLineEdit("", self)
         self.output_path_label.setPlaceholderText("请输入输出路径")
-        self.output_path_button.setIcon(QIcon("assets/arrow.png"))
         self.output_path_button.clicked.connect(self.select_output_path)
         output_path_layout.addWidget(self.output_path_button)
         output_path_layout.addWidget(self.output_path_label)
@@ -173,12 +171,21 @@ class MainWindow(QMainWindow):
 
             QMessageBox.information(self, "成功", "图片已成功转换为JSON文件！")
 
+    @staticmethod
+    def getPath(path: str):
+        try:
+            base_path = sys._MEIPASS
+        except Exception:
+            base_path = os.path.abspath(".")
+
+        return os.path.join(base_path, path)
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     # 加载自定义字体文件
-    font_path = os.path.join("assets", "HarmonyOS_Sans_SC_Regular.ttf")
+    font_path = MainWindow.getPath("assets/HarmonyOS_Sans_SC_Regular.ttf")
     font_id = QFontDatabase.addApplicationFont(font_path)
     font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
     app.setFont(QFont(font_family, 10))
