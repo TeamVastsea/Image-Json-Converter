@@ -54,7 +54,6 @@ class MainWindow(QMainWindow):
         main_layout.addWidget(title_label, alignment=Qt.AlignCenter)
         main_layout.addStretch(1)
 
-
         # 图片路径部分布局
         image_path_layout = QHBoxLayout()
         self.image_path_button = QPushButton("选择图片路径", self)
@@ -85,7 +84,8 @@ class MainWindow(QMainWindow):
 
         # 显示版权信息
         current_year = QDate.currentDate().year()
-        copy_right_text = "© 2021-{} <a style='color:black;' href='https://www.vastsea.cc/'>瀚海工艺-Vastsea</a> 保留所有权利".format(current_year)
+        copy_right_text = "© 2021-{} <a style='color:black;' href='https://www.vastsea.cc/'>瀚海工艺-Vastsea</a> 保留所有权利".format(
+            current_year)
         self.copy_right_label = QLabel(copy_right_text, self)
         self.copy_right_label.setAlignment(Qt.AlignCenter)
         self.copy_right_label.setOpenExternalLinks(True)  # 设置为True，使超链接在浏览器中打开
